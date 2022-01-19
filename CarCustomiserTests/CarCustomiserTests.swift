@@ -32,7 +32,7 @@ class CarCustomiserTests: XCTestCase {
             Make: Mazda
             Model: MX-5
             Top Speed: 125mph
-            Acceleration (0-60): 7.7s
+            Acceleration (0-60 in): 7.7s
             Handling: 5
             """
         //assert
