@@ -164,10 +164,10 @@ struct ContentView: View {
                     })
                 }
                 Section {
-                    Toggle("Exhaust Package", isOn: exhaustPackageBinding).disabled(isExhaustDisabled)
-                    Toggle("Tires Package", isOn: tiresPackageBinding).disabled(isTiresDisabled)
-                    Toggle("Drive Train Package", isOn: DriveTrainPackageBinding).disabled(isDriveTrainDisabled)
-                    Toggle("Engine Package", isOn: enginePackageBinding).disabled(isEngineDisabled)
+                    Toggle("Exhaust Package (2000)", isOn: exhaustPackageBinding).disabled(isExhaustDisabled)
+                    Toggle("Tires Package (1500)", isOn: tiresPackageBinding).disabled(isTiresDisabled)
+                    Toggle("Drive Train Package (2000)", isOn: DriveTrainPackageBinding).disabled(isDriveTrainDisabled)
+                    Toggle("Engine Package (1500)", isOn: enginePackageBinding).disabled(isEngineDisabled)
                 }
                 Section {
                     Text("Remaining Funds: \(money)")
