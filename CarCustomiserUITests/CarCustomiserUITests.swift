@@ -21,53 +21,87 @@ class CarCustomiserUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testWhenTiresAndExhaustPackageAreBoughtOtherTwoUpgradesAreDisabled() throws {
+    func testWhenTiresAndExhaustPackageAreBoughtTheOtherTwoUpgradesAreDisabled() throws {
         //arrange
         let app = XCUIApplication()
         app.launch()
+        
+        
+        
         //act
         let tablesQuery = app.tables
-        tablesQuery.switches["Exhaust Package (Cost: 500)"].tap()
+        tablesQuery.switches["Exhaust Package - 500)"].tap()
         tablesQuery.switches["Tires Package (Cost: 500)"].tap()
+        
+        
+        
         //assert
         XCTAssertEqual(tablesQuery.switches["Drivetrain Package (Cost: 500)"].isEnabled, false)
         XCTAssertEqual(tablesQuery.switches["Fuel Package (Cost: 500)"].isEnabled, false)
           
     }
     
-    func testBuyTwoPackagesResultsInNoMoneyLeft() throws {
+    func testBuyTwoPackagesResultsInHavingNoMoneyLeft() throws {
         //arrange
         let app = XCUIApplication()
         app.launch()
+        
+        
+        
+        
         //act
         let tablesQuery = app.tables
-        tablesQuery.switches["Exhaust Package (Cost: 500)"].tap()
+        tablesQuery.switches["Exhaust Package - 500)"].tap()
         tablesQuery.switches["Tires Package (Cost: 500)"].tap()
+        
+        
+        
         //assert
         XCTAssertEqual(app.staticTexts["Remaining Funds: 0"].exists,true)
     }
     
+    
+    
+    
+    
+    
     func testSellTwoPurchasedPackagesResultsInFullFunds() throws {
+        
+        
+        
         //arrange
         let app = XCUIApplication()
         app.launch()
+        
+        
+        
         //act
         let tablesQuery = app.tables
-        tablesQuery.switches["Exhaust Package (Cost: 500)"].tap()
-        tablesQuery.switches["Tires Package (Cost: 500)"].tap()
-        tablesQuery.switches["Exhaust Package (Cost: 500)"].tap()
-        tablesQuery.switches["Tires Package (Cost: 500)"].tap()
+        tablesQuery.switches["Exhaust Package - 500"].tap()
+        tablesQuery.switches["Tires Package - 500"].tap()
+        tablesQuery.switches["Exhaust Package - 500"].tap()
+        tablesQuery.switches["Tires Package - 500"].tap()
+        
+        
+        
         //assert
-        XCTAssertEqual(app.staticTexts["Remaining Funds: 1,000"].exists,true)
+        XCTAssertEqual(app.staticTexts["Money left 1,000"].exists,true)
     }
     
     func testCarResetsWhenNextCarPressed() throws {
         //arrange
         let app = XCUIApplication()
         app.launch()
+        
+        
+        
         //act
+        
+        
         let tablesQuery = app.tables
         tablesQuery.cells["Make: Mazda\nModel: MX-5\nTop Speed: 125mph\nAcceleration (0-60): 7.7s\nHandling: 5, Next Car"].children(matching: .other).element(boundBy: 0).children(matching: .other).element.tap()
+        
+        
         //assert
         XCTAssertEqual(tablesQuery.switches["Exhaust Package (Cost: 500)"].isSelected, false)
         XCTAssertEqual(tablesQuery.switches["Tires Package (Cost: 500)"].isSelected, false)
@@ -82,7 +116,7 @@ class CarCustomiserUITests: XCTestCase {
     
     
     
-    func testNewCarWhenNextCarPressed() throws {
+    func testNewCarWhenNextCarButtonIsPressed() throws {
         //arrange
         let app = XCUIApplication()
         app.launch()
@@ -90,9 +124,15 @@ class CarCustomiserUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.cells["Make: Mazda\nModel: MX-5\nTop Speed: 125mph\nAcceleration (0-60): 7.7s\nHandling: 5, Next Car"].children(matching: .other).element(boundBy: 0).children(matching: .other).element.tap()
         
+        
+        //assert
         XCTAssertEqual(tablesQuery.cells["Make: Volkswagen\nModel: Golf\nTop Speed: 110mph\nAcceleration (0-60): 6.2s\nHandling: 7, Next Car"].children(matching: .other).element(boundBy: 0).children(matching: .other).element.exists, true)
     }
 
+    
+    
+    
+    
     
     
     

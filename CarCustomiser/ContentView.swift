@@ -25,7 +25,12 @@ struct ContentView: View {
     @State private var tiresPackage = false
     @State private var drivetrainPackage = false
     @State private var fuelPackage = false
-    @State private var timerOver = false
+    @State private var timerIsOver = false
+    
+    
+    
+    
+    
     
     
     
@@ -153,7 +158,7 @@ struct ContentView: View {
                     if self.remainingTime > 0 {
                         self.remainingTime -= 1
                     } else {
-                        timerOver = true
+                        timerIsOver = true
                     }
                 }
                 .foregroundColor(.red)
@@ -164,7 +169,7 @@ struct ContentView: View {
                             selectedCar += 1
                             resetDisplay()
                     })
-                        .disabled(timerOver)
+                        .disabled(timerIsOver)
                 }
                 
                 
@@ -177,14 +182,19 @@ struct ContentView: View {
                 
                 Section {
                     Toggle("Exhaust Package - 500", isOn: exhaustPackageBinding)
-                        .disabled(!isExhaustPackageActivated || timerOver)
+                        .disabled(!isExhaustPackageActivated || timerIsOver)
                     Toggle("Tires Package - 500", isOn: tiresPackageBinding)
-                        .disabled(!isTiresPackageActivated || timerOver)
+                        .disabled(!isTiresPackageActivated || timerIsOver)
                     Toggle("Fuel Package - 500", isOn: fuelPackageBinding)
-                        .disabled(!isFuelPackageActivated || timerOver)
+                        .disabled(!isFuelPackageActivated || timerIsOver)
                     Toggle("Drivetrain Package - 500", isOn: drivetrainPackageBinding)
-                        .disabled(!isDrivetrainPackageActivated || timerOver)
+                        .disabled(!isDrivetrainPackageActivated || timerIsOver)
                 }
+                
+                
+                
+                
+                
                 
                 
                 
@@ -198,7 +208,7 @@ struct ContentView: View {
                 
                 
             }
-            Text("Remaining Funds: \(money)")
+            Text("Money left - \(money)")
                 .foregroundColor(.red)
                 .baselineOffset(20)
         }
